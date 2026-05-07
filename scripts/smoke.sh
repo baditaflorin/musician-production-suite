@@ -2,7 +2,7 @@
 set -eu
 
 npm run build
-go build -o bin/mps-server ./cmd/server
+CGO_ENABLED=0 go build -o bin/mps-server ./cmd/server
 
 PORT="${PORT:-18080}"
 MPS_API_ADDR=":${PORT}" MPS_STORAGE_DIR=./tmp/smoke-jobs ./bin/mps-server >/tmp/mps-smoke.log 2>&1 &
@@ -25,4 +25,3 @@ test -f docs/index.html
 grep -q "Musician Production Suite" docs/index.html
 
 printf 'smoke ok\n'
-

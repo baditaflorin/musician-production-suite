@@ -36,11 +36,11 @@ dev-frontend:
 	npm run dev -- --host 127.0.0.1 --port $(FRONTEND_PORT)
 
 dev-backend:
-	MPS_API_ADDR=:$(BACKEND_PORT) go run ./cmd/server
+	CGO_ENABLED=0 MPS_API_ADDR=:$(BACKEND_PORT) go run ./cmd/server
 
 build:
 	npm run build
-	go build -trimpath -o bin/mps-server ./cmd/server
+	CGO_ENABLED=0 go build -trimpath -o bin/mps-server ./cmd/server
 	test -f docs/index.html
 
 data:
@@ -48,10 +48,10 @@ data:
 
 test:
 	npm test -- --run
-	go test $(GO_PACKAGES)
+	CGO_ENABLED=0 go test $(GO_PACKAGES)
 
 test-integration:
-	go test -tags=integration ./test/integration/...
+	CGO_ENABLED=0 go test -tags=integration ./test/integration/...
 
 smoke:
 	./scripts/smoke.sh
@@ -59,7 +59,7 @@ smoke:
 lint:
 	npm run lint
 	npm run typecheck
-	go vet $(GO_PACKAGES)
+	CGO_ENABLED=0 go vet $(GO_PACKAGES)
 
 fmt:
 	npm run format
