@@ -18,6 +18,13 @@ docker compose up -d
 
 The public backend is exposed through nginx on host port `25342`.
 
+Published image tags:
+
+```text
+ghcr.io/baditaflorin/musician-production-suite:latest
+ghcr.io/baditaflorin/musician-production-suite:v0.1.0
+```
+
 ## TLS
 
 Replace `example.com` in `deploy/nginx/nginx.conf` with the real host. Obtain
