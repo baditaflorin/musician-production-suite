@@ -1,6 +1,7 @@
 SHELL := /bin/sh
 FRONTEND_PORT ?= 5173
 BACKEND_PORT ?= 8080
+GO_PACKAGES := ./cmd/... ./internal/... ./pkg/...
 
 .PHONY: help install-hooks dev dev-frontend dev-backend build data test test-integration smoke lint fmt pages-preview docker-build docker-push release compose-up compose-down clean hooks-pre-commit hooks-commit-msg hooks-pre-push
 
@@ -47,7 +48,7 @@ data:
 
 test:
 	npm test -- --run
-	go test ./...
+	go test $(GO_PACKAGES)
 
 test-integration:
 	go test -tags=integration ./test/integration/...
@@ -58,7 +59,7 @@ smoke:
 lint:
 	npm run lint
 	npm run typecheck
-	go vet ./...
+	go vet $(GO_PACKAGES)
 
 fmt:
 	npm run format
