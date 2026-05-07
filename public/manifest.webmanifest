@@ -1,0 +1,10 @@
+{
+  "name": "Musician Production Suite",
+  "short_name": "MPS",
+  "start_url": "/musician-production-suite/",
+  "display": "standalone",
+  "background_color": "#f8f8f5",
+  "theme_color": "#15171c",
+  "icons": []
+}
+
