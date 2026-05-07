@@ -20,4 +20,3 @@ Prometheus can scrape the API container. Nginx blocks public access to metrics.
 ## Alternatives Considered
 
 Client analytics are out of scope and disabled by default.
-

@@ -21,4 +21,3 @@ Container logs are machine-readable and compatible with common collectors.
 ## Alternatives Considered
 
 Text logs were rejected because production parsing is weaker.
-

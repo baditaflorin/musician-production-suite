@@ -22,4 +22,3 @@ with enough CPU, RAM, and disk for audio jobs.
 
 Serving the frontend from the Go binary was rejected by the Pages-first
 constraint.
-

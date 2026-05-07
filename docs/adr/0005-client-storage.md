@@ -22,4 +22,3 @@ State is simple and local to the device. Cross-device sync is out of scope.
 
 IndexedDB and OPFS were considered for local audio caches but rejected for v1
 because processing happens backend-side.
-

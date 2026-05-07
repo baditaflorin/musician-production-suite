@@ -8,10 +8,9 @@ export default {
         panel: "#f8f8f5",
         line: "#d8d7ce",
         signal: "#0d766e",
-        warn: "#a35416"
-      }
-    }
+        warn: "#a35416",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
-

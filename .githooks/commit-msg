@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+MSG_FILE="$1"
+if ! grep -Eq '^(feat|fix|docs|chore|refactor|test|ops|data|build)(\([a-z0-9_-]+\))?: .+' "$MSG_FILE"; then
+  printf 'Commit message must use Conventional Commits.\n' >&2
+  exit 1
+fi
+

@@ -23,4 +23,3 @@ Pages.
 
 Plain TypeScript was rejected because the job UI benefits from component state.
 Next.js was rejected because static Pages publishing is simpler with Vite.
-

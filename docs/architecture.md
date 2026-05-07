@@ -29,4 +29,3 @@ flowchart LR
 
 The Pages boundary is explicit: static assets live in `docs/`; audio processing
 does not.
-

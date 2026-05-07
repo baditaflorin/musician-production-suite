@@ -30,4 +30,3 @@ the backend container.
 Mode A was rejected because PyTorch, Demucs, LilyPond, FFmpeg, SoX, RNNoise, and
 VST hosting are not practical as a complete browser-only v1. Mode B was rejected
 because users upload their own audio and need runtime processing.
-

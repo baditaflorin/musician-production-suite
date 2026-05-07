@@ -22,4 +22,3 @@ for Pages live alongside documentation.
 
 A `gh-pages` branch was rejected because it complicates local hooks and commit
 visibility.
-

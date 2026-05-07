@@ -26,4 +26,3 @@ Minimum for fallback mode: 2 CPU, 2 GB RAM, 10 GB disk.
 
 Recommended for Demucs/CREPE workloads: 8 CPU, 16 GB RAM, 100 GB disk, and a
 GPU-capable variant when available.
-

@@ -22,4 +22,3 @@ Deployment is portable across local, Docker Compose, and hosted servers.
 
 Config files were rejected for deployment secrets because they are easier to
 commit accidentally.
-

@@ -6,4 +6,3 @@ Be respectful, constructive, and specific. Harassment, discrimination, threats,
 or abusive behavior are not acceptable in project spaces.
 
 Report conduct concerns to the maintainers listed in `SECURITY.md`.
-

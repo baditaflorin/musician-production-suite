@@ -8,10 +8,12 @@ describe("ProductionSuite", () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
         <ProductionSuite />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    expect(screen.getByRole("heading", { name: /Musician Production Suite/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Musician Production Suite/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Drop or choose/i)).toBeInTheDocument();
   });
 });

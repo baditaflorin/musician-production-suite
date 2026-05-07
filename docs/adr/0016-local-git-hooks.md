@@ -19,4 +19,3 @@ Developers must run `make install-hooks` after cloning.
 ## Alternatives Considered
 
 Lefthook was considered, but plain hooks reduce dependency surface.
-

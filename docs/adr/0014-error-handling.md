@@ -20,4 +20,3 @@ The frontend can show actionable failures and backend logs stay consistent.
 ## Alternatives Considered
 
 Panics and opaque text errors were rejected.
-

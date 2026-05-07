@@ -21,4 +21,3 @@ unavailability and CORS failures clearly.
 ## Alternatives Considered
 
 GraphQL was rejected as unnecessary for a small job/artifact API.
-

@@ -1,0 +1,63 @@
+services:
+  app:
+    image: ghcr.io/${GITHUB_OWNER:-local}/musician-production-suite:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MPS_API_ADDR: ":8080"
+      MPS_STORAGE_DIR: /data/jobs
+    volumes:
+      - mps_jobs:/data/jobs
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "/app/mps-server", "-healthcheck"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 8G
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "25342:443"
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - internal
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  prometheus:
+    image: prom/prometheus:v3.0.1
+    profiles: ["metrics"]
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - internal
+
+volumes:
+  mps_jobs:
+
+networks:
+  internal:
+    driver: bridge

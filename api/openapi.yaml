@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Musician Production Suite API
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /healthz:
+    get:
+      responses:
+        "200":
+          description: Healthy
+  /readyz:
+    get:
+      responses:
+        "200":
+          description: Ready
+  /api/v1/jobs:
+    post:
+      summary: Create an audio processing job
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [audio]
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+  /api/v1/jobs/{id}:
+    get:
+      summary: Read job status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Job
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+  /api/v1/jobs/{id}/artifacts/{path}:
+    get:
+      summary: Download an artifact
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Artifact bytes
+components:
+  schemas:
+    Job:
+      type: object
+      required:
+        [
+          id,
+          filename,
+          status,
+          progress,
+          message,
+          createdAt,
+          updatedAt,
+          chords,
+          artifacts,
+        ]
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        bpm:
+          type: number
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        chords:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChordSegment"
+        artifacts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Artifact"
+        error:
+          type: string
+          nullable: true
+    ChordSegment:
+      type: object
+      required: [start, end, chord]
+      properties:
+        start:
+          type: number
+        end:
+          type: number
+        chord:
+          type: string
+    Artifact:
+      type: object
+      required: [name, kind, url, sizeBytes]
+      properties:
+        name:
+          type: string
+        kind:
+          type: string
+        url:
+          type: string
+        sizeBytes:
+          type: integer

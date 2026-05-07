@@ -22,4 +22,3 @@ workaround.
 
 Running Essentia or Verovio in the browser was deferred because it would not
 remove the need for backend Demucs, LilyPond, FFmpeg, SoX, and VST hosting.
-

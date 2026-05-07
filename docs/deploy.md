@@ -15,4 +15,3 @@ Rollback by reverting the publishing commit and pushing `main`.
 
 Custom domains require a committed `docs/CNAME` file and DNS configured with
 GitHub Pages records.
-

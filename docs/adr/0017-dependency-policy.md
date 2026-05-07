@@ -21,4 +21,3 @@ The v1 implementation is reliable and replaceable at adapter boundaries.
 ## Alternatives Considered
 
 Hand-rolled parsers, audio codecs, and ML models were rejected.
-

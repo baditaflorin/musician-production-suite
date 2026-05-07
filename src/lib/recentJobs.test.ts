@@ -12,4 +12,3 @@ describe("recent job storage", () => {
     expect(readRecentJobs()).toEqual(["a", "b"]);
   });
 });
-

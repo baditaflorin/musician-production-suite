@@ -4,7 +4,7 @@ const artifactSchema = z.object({
   name: z.string(),
   kind: z.string(),
   url: z.string(),
-  sizeBytes: z.number().int().nonnegative()
+  sizeBytes: z.number().int().nonnegative(),
 });
 
 export const jobSchema = z.object({
@@ -17,15 +17,18 @@ export const jobSchema = z.object({
   updatedAt: z.string(),
   bpm: z.number().nullable(),
   key: z.string().nullable(),
-  chords: z.array(z.object({ start: z.number(), end: z.number(), chord: z.string() })),
+  chords: z.array(
+    z.object({ start: z.number(), end: z.number(), chord: z.string() }),
+  ),
   artifacts: z.array(artifactSchema),
-  error: z.string().nullable()
+  error: z.string().nullable(),
 });
 
 export type Job = z.infer<typeof jobSchema>;
 export type Artifact = z.infer<typeof artifactSchema>;
 
-const defaultApiBase = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080";
+const defaultApiBase =
+  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080";
 
 export function getStoredApiBase(): string {
   return localStorage.getItem("mps.apiBase") ?? defaultApiBase;
@@ -35,15 +38,26 @@ export function setStoredApiBase(value: string): void {
   localStorage.setItem("mps.apiBase", value.replace(/\/$/, ""));
 }
 
-export async function createJob(file: File, apiBase = getStoredApiBase()): Promise<Job> {
+export async function createJob(
+  file: File,
+  apiBase = getStoredApiBase(),
+): Promise<Job> {
   const body = new FormData();
   body.append("audio", file);
-  const response = await fetch(`${apiBase}/api/v1/jobs`, { method: "POST", body });
+  const response = await fetch(`${apiBase}/api/v1/jobs`, {
+    method: "POST",
+    body,
+  });
   return parseJobResponse(response);
 }
 
-export async function getJob(id: string, apiBase = getStoredApiBase()): Promise<Job> {
-  const response = await fetch(`${apiBase}/api/v1/jobs/${encodeURIComponent(id)}`);
+export async function getJob(
+  id: string,
+  apiBase = getStoredApiBase(),
+): Promise<Job> {
+  const response = await fetch(
+    `${apiBase}/api/v1/jobs/${encodeURIComponent(id)}`,
+  );
   return parseJobResponse(response);
 }
 
@@ -58,4 +72,3 @@ async function parseJobResponse(response: Response): Promise<Job> {
   }
   return jobSchema.parse(data);
 }
-

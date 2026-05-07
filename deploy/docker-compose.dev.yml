@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: musician-production-suite:dev
+    env_file:
+      - ../.env.example
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../tmp/jobs:/data/jobs

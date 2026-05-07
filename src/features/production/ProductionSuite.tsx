@@ -10,15 +10,23 @@ import {
   ListMusic,
   RefreshCw,
   SlidersHorizontal,
-  Upload
+  Upload,
 } from "lucide-react";
 import clsx from "clsx";
-import { createJob, getJob, getStoredApiBase, Job, setStoredApiBase } from "../../lib/api";
+import {
+  createJob,
+  getJob,
+  getStoredApiBase,
+  Job,
+  setStoredApiBase,
+} from "../../lib/api";
 import { readRecentJobs, rememberJob } from "../../lib/recentJobs";
 
 export function ProductionSuite() {
   const [apiBase, setApiBase] = useState(getStoredApiBase());
-  const [selectedJobId, setSelectedJobId] = useState<string | null>(readRecentJobs()[0] ?? null);
+  const [selectedJobId, setSelectedJobId] = useState<string | null>(
+    readRecentJobs()[0] ?? null,
+  );
   const [recentJobs, setRecentJobs] = useState(readRecentJobs());
 
   const upload = useMutation({
@@ -26,7 +34,7 @@ export function ProductionSuite() {
     onSuccess: (job) => {
       setSelectedJobId(job.id);
       setRecentJobs(rememberJob(job.id));
-    }
+    },
   });
 
   const jobQuery = useQuery({
@@ -36,7 +44,7 @@ export function ProductionSuite() {
     refetchInterval: (query) => {
       const status = query.state.data?.status;
       return status === "queued" || status === "running" ? 1500 : false;
-    }
+    },
   });
 
   const job = jobQuery.data;
@@ -59,10 +67,13 @@ export function ProductionSuite() {
           <div>
             <div className="flex items-center gap-3">
               <Disc3 className="h-8 w-8 text-signal" aria-hidden="true" />
-              <h1 className="text-2xl font-semibold tracking-normal">Musician Production Suite</h1>
+              <h1 className="text-2xl font-semibold tracking-normal">
+                Musician Production Suite
+              </h1>
             </div>
             <p className="mt-2 max-w-3xl text-sm text-zinc-600">
-              Audio in. BPM, key, chords, stems, cleanup, MIDI, score PDF, and mixdown out.
+              Audio in. BPM, key, chords, stems, cleanup, MIDI, score PDF, and
+              mixdown out.
             </p>
           </div>
           <label className="flex min-w-0 flex-col gap-1 text-xs font-medium uppercase tracking-wide text-zinc-600">
@@ -84,7 +95,11 @@ export function ProductionSuite() {
             error={upload.error}
             onFile={(file) => upload.mutate(file)}
           />
-          <RecentJobs jobs={recentJobs} selected={selectedJobId} onSelect={setSelectedJobId} />
+          <RecentJobs
+            jobs={recentJobs}
+            selected={selectedJobId}
+            onSelect={setSelectedJobId}
+          />
         </section>
 
         <section className="min-w-0">
@@ -105,7 +120,7 @@ export function ProductionSuite() {
 function UploadPanel({
   isUploading,
   error,
-  onFile
+  onFile,
 }: {
   isUploading: boolean;
   error: Error | null;
@@ -120,9 +135,13 @@ function UploadPanel({
       <label className="focus-ring mt-4 flex min-h-44 cursor-pointer flex-col items-center justify-center rounded border border-dashed border-zinc-400 bg-panel px-4 text-center hover:border-signal">
         <FileAudio className="mb-3 h-8 w-8 text-zinc-700" aria-hidden="true" />
         <span className="text-sm font-medium">
-          {isUploading ? "Uploading..." : "Drop or choose WAV, MP3, FLAC, AIFF, or OGG"}
+          {isUploading
+            ? "Uploading..."
+            : "Drop or choose WAV, MP3, FLAC, AIFF, or OGG"}
         </span>
-        <span className="mt-1 text-xs text-zinc-600">Max size follows backend configuration</span>
+        <span className="mt-1 text-xs text-zinc-600">
+          Max size follows backend configuration
+        </span>
         <input
           className="sr-only"
           type="file"
@@ -135,7 +154,9 @@ function UploadPanel({
           }}
         />
       </label>
-      {error ? <p className="mt-3 text-sm text-red-700">{error.message}</p> : null}
+      {error ? (
+        <p className="mt-3 text-sm text-red-700">{error.message}</p>
+      ) : null}
     </div>
   );
 }
@@ -143,7 +164,7 @@ function UploadPanel({
 function RecentJobs({
   jobs,
   selected,
-  onSelect
+  onSelect,
 }: {
   jobs: string[];
   selected: string | null;
@@ -163,7 +184,9 @@ function RecentJobs({
             <button
               className={clsx(
                 "focus-ring flex w-full items-center justify-between rounded border px-3 py-2 text-left text-sm",
-                selected === id ? "border-signal bg-teal-50" : "border-line bg-panel hover:bg-white"
+                selected === id
+                  ? "border-signal bg-teal-50"
+                  : "border-line bg-panel hover:bg-white",
               )}
               key={id}
               type="button"
@@ -184,7 +207,7 @@ function JobWorkspace({
   apiHost,
   isLoading,
   error,
-  onRefresh
+  onRefresh,
 }: {
   job: Job | undefined;
   apiBase: string;
@@ -206,10 +229,16 @@ function JobWorkspace({
     return (
       <div className="flex min-h-[520px] items-center justify-center rounded border border-line bg-white p-8 text-center shadow-sm">
         <div>
-          <SlidersHorizontal className="mx-auto h-10 w-10 text-signal" aria-hidden="true" />
-          <h2 className="mt-4 text-xl font-semibold">Ready for an audio file</h2>
+          <SlidersHorizontal
+            className="mx-auto h-10 w-10 text-signal"
+            aria-hidden="true"
+          />
+          <h2 className="mt-4 text-xl font-semibold">
+            Ready for an audio file
+          </h2>
           <p className="mt-2 max-w-xl text-sm text-zinc-600">
-            Connected target: {apiHost}. Upload a track to start the production pipeline.
+            Connected target: {apiHost}. Upload a track to start the production
+            pipeline.
           </p>
         </div>
       </div>
@@ -221,8 +250,12 @@ function JobWorkspace({
       <div className="rounded border border-line bg-white p-5 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0">
-            <p className="text-xs font-medium uppercase tracking-wide text-zinc-600">{job.id}</p>
-            <h2 className="mt-1 truncate text-xl font-semibold">{job.filename}</h2>
+            <p className="text-xs font-medium uppercase tracking-wide text-zinc-600">
+              {job.id}
+            </p>
+            <h2 className="mt-1 truncate text-xl font-semibold">
+              {job.filename}
+            </h2>
             <p className="mt-2 text-sm text-zinc-600">{job.message}</p>
           </div>
           <button
@@ -230,11 +263,17 @@ function JobWorkspace({
             type="button"
             onClick={onRefresh}
           >
-            <RefreshCw className={clsx("h-4 w-4", isLoading && "animate-spin")} aria-hidden="true" />
+            <RefreshCw
+              className={clsx("h-4 w-4", isLoading && "animate-spin")}
+              aria-hidden="true"
+            />
             Refresh
           </button>
         </div>
-        <div className="mt-5 h-3 overflow-hidden rounded bg-zinc-200" aria-label="Job progress">
+        <div
+          className="mt-5 h-3 overflow-hidden rounded bg-zinc-200"
+          aria-label="Job progress"
+        >
           <div
             className="h-full bg-signal transition-all"
             style={{ width: `${job.progress}%` }}
@@ -248,9 +287,17 @@ function JobWorkspace({
       </div>
 
       <div className="grid gap-5 lg:grid-cols-3">
-        <Metric icon={Gauge} label="BPM" value={job.bpm?.toFixed(1) ?? "Pending"} />
+        <Metric
+          icon={Gauge}
+          label="BPM"
+          value={job.bpm?.toFixed(1) ?? "Pending"}
+        />
         <Metric icon={FileMusic} label="Key" value={job.key ?? "Pending"} />
-        <Metric icon={Activity} label="Artifacts" value={String(job.artifacts.length)} />
+        <Metric
+          icon={Activity}
+          label="Artifacts"
+          value={String(job.artifacts.length)}
+        />
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[1fr_1.25fr]">
@@ -270,7 +317,10 @@ function JobWorkspace({
                 </thead>
                 <tbody>
                   {job.chords.map((chord) => (
-                    <tr className="border-t border-line" key={`${chord.start}-${chord.chord}`}>
+                    <tr
+                      className="border-t border-line"
+                      key={`${chord.start}-${chord.chord}`}
+                    >
                       <td className="py-2">{chord.start.toFixed(1)}s</td>
                       <td className="py-2">{chord.end.toFixed(1)}s</td>
                       <td className="py-2 font-semibold">{chord.chord}</td>
@@ -286,7 +336,9 @@ function JobWorkspace({
           <h3 className="text-base font-semibold">Downloads</h3>
           <div className="mt-3 grid gap-2">
             {job.artifacts.length === 0 ? (
-              <p className="text-sm text-zinc-600">Artifacts appear as processing finishes.</p>
+              <p className="text-sm text-zinc-600">
+                Artifacts appear as processing finishes.
+              </p>
             ) : (
               job.artifacts.map((artifact) => (
                 <a
@@ -295,12 +347,17 @@ function JobWorkspace({
                   key={artifact.url}
                 >
                   <span className="min-w-0">
-                    <span className="block truncate font-medium">{artifact.name}</span>
+                    <span className="block truncate font-medium">
+                      {artifact.name}
+                    </span>
                     <span className="text-xs text-zinc-600">
                       {artifact.kind} · {formatBytes(artifact.sizeBytes)}
                     </span>
                   </span>
-                  <Download className="h-4 w-4 shrink-0 text-signal" aria-hidden="true" />
+                  <Download
+                    className="h-4 w-4 shrink-0 text-signal"
+                    aria-hidden="true"
+                  />
                 </a>
               ))
             )}
@@ -316,15 +373,24 @@ function StatusPill({ status }: { status: Job["status"] }) {
     queued: "border-zinc-300 bg-zinc-100 text-zinc-800",
     running: "border-teal-300 bg-teal-50 text-teal-800",
     succeeded: "border-green-300 bg-green-50 text-green-800",
-    failed: "border-red-300 bg-red-50 text-red-800"
+    failed: "border-red-300 bg-red-50 text-red-800",
   }[status];
-  return <span className={clsx("rounded border px-2 py-1 text-xs font-semibold", classes)}>{status}</span>;
+  return (
+    <span
+      className={clsx(
+        "rounded border px-2 py-1 text-xs font-semibold",
+        classes,
+      )}
+    >
+      {status}
+    </span>
+  );
 }
 
 function Metric({
   icon: Icon,
   label,
-  value
+  value,
 }: {
   icon: typeof Gauge;
   label: string;

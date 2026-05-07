@@ -23,4 +23,3 @@ the API contract.
 
 A monolithic script runner was rejected because it would be hard to test and
 hard to expose safely over HTTP.
-

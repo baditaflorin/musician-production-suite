@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log/slog"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -19,6 +20,13 @@ import (
 var version = "dev"
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "-healthcheck" {
+		if err := healthcheck(); err != nil {
+			os.Exit(1)
+		}
+		return
+	}
+
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{}))
 	cfg, err := config.Load()
 	if err != nil {
@@ -65,4 +73,12 @@ func main() {
 		os.Exit(1)
 	}
 	logger.Info("server_stopped")
+}
+
+func healthcheck() error {
+	conn, err := net.DialTimeout("tcp", "127.0.0.1:8080", 2*time.Second)
+	if err != nil {
+		return err
+	}
+	return conn.Close()
 }

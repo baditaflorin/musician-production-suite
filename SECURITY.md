@@ -19,4 +19,3 @@ Do not open public issues for suspected vulnerabilities.
 
 Never commit real credentials, API keys, private keys, or production `.env`
 files. Use `.env.example` for placeholders only.
-

@@ -22,4 +22,3 @@ Checks remain local and compatible with git hooks.
 ## Alternatives Considered
 
 GitHub Actions were rejected by project constraint.
-
