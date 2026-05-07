@@ -4,8 +4,8 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/example/musician-production-suite/internal/config"
-	"github.com/example/musician-production-suite/internal/jobs"
+	"github.com/baditaflorin/musician-production-suite/internal/config"
+	"github.com/baditaflorin/musician-production-suite/internal/jobs"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"

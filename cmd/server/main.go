@@ -10,11 +10,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/example/musician-production-suite/internal/api"
-	"github.com/example/musician-production-suite/internal/config"
-	"github.com/example/musician-production-suite/internal/jobs"
-	"github.com/example/musician-production-suite/internal/utils"
-	"github.com/example/musician-production-suite/pkg/audio"
+	"github.com/baditaflorin/musician-production-suite/internal/api"
+	"github.com/baditaflorin/musician-production-suite/internal/config"
+	"github.com/baditaflorin/musician-production-suite/internal/jobs"
+	"github.com/baditaflorin/musician-production-suite/internal/utils"
+	"github.com/baditaflorin/musician-production-suite/pkg/audio"
 )
 
 var version = "dev"

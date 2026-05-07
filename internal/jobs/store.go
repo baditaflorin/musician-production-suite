@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/example/musician-production-suite/internal/domain"
+	"github.com/baditaflorin/musician-production-suite/internal/domain"
 )
 
 var ErrNotFound = errors.New("job not found")

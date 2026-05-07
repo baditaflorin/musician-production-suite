@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/example/musician-production-suite/internal/domain"
-	"github.com/example/musician-production-suite/pkg/audio"
+	"github.com/baditaflorin/musician-production-suite/internal/domain"
+	"github.com/baditaflorin/musician-production-suite/pkg/audio"
 )
 
 type Runner struct {

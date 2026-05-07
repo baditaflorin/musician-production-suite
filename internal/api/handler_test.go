@@ -10,9 +10,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/example/musician-production-suite/internal/config"
-	"github.com/example/musician-production-suite/internal/jobs"
-	"github.com/example/musician-production-suite/pkg/audio"
+	"github.com/baditaflorin/musician-production-suite/internal/config"
+	"github.com/baditaflorin/musician-production-suite/internal/jobs"
+	"github.com/baditaflorin/musician-production-suite/pkg/audio"
 	"github.com/stretchr/testify/require"
 )
 

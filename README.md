@@ -1,6 +1,6 @@
 # musician-production-suite
 
-https://github.com/pages-url-pending/musician-production-suite
+https://baditaflorin.github.io/musician-production-suite/
 
 Browser UI plus audio backend for stems, cleanup, BPM/key/chords, transcription,
 MIDI, sheet music PDF, and mixdown.
@@ -34,6 +34,6 @@ Docker image and intended to run separately behind nginx.
 
 See:
 
-- https://github.com/pages-url-pending/musician-production-suite/blob/main/docs/architecture.md
-- https://github.com/pages-url-pending/musician-production-suite/blob/main/docs/adr/0001-deployment-mode.md
-- https://github.com/pages-url-pending/musician-production-suite/blob/main/deploy/README.md
+- https://github.com/baditaflorin/musician-production-suite/blob/main/docs/architecture.md
+- https://github.com/baditaflorin/musician-production-suite/blob/main/docs/adr/0001-deployment-mode.md
+- https://github.com/baditaflorin/musician-production-suite/blob/main/deploy/README.md

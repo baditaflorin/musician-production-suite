@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/example/musician-production-suite/internal/domain"
-	"github.com/example/musician-production-suite/internal/jobs"
+	"github.com/baditaflorin/musician-production-suite/internal/domain"
+	"github.com/baditaflorin/musician-production-suite/internal/jobs"
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 )

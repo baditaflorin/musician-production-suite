@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/example/musician-production-suite/internal/domain"
+	"github.com/baditaflorin/musician-production-suite/internal/domain"
 )
 
 type Pipeline struct {

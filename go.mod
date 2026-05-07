@@ -1,4 +1,4 @@
-module github.com/example/musician-production-suite
+module github.com/baditaflorin/musician-production-suite
 
 go 1.26
 
